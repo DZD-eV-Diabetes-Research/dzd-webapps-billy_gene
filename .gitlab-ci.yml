@@ -1,1 +1,3 @@
+# this might be usefull in case of gitlab
 
+image: docker:git
