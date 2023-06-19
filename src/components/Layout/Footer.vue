@@ -3,7 +3,7 @@
     <div class="footer__content">
       <div class="footer__logos">
         <img src="/img/logos/helmholtz.png" alt="Helmholtz Munich" />
-        <img src="/img/logos/gmc.png" alt="German Mouse Clinic" />
+        <!-- <img src="/img/logos/gmc.png" alt="German Mouse Clinic" /> -->
       </div>
       <div class="footer__links">
         <a href="https://www.dzd-ev.de/footermenue/impressum/index.html" target="_new">Imprint</a>
