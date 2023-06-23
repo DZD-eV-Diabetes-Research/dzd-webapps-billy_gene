@@ -29,23 +29,14 @@
                             <div class="form__group">
                                 <div class="radio__group radio__group--inline">
                                     <div class="radio">
-                                        <input 
-                                        type="radio" 
-                                        class="radio__input" 
-                                        value="and_mesh" 
-                                        id="mesh-combined"
-                                        v-model="meshQueryType" 
-                                        checked />
+                                        <input type="radio" class="radio__input" value="and_mesh" id="mesh-combined"
+                                            v-model="meshQueryType" checked />
                                         <label for="mesh-combined"><span>Combined MeSH-Terms</span></label>
                                     </div>
 
                                     <div class="radio">
-                                        <input 
-                                        type="radio" 
-                                        class="radio__input"
-                                        value="or_mesh" 
-                                        id="mesh-separate"
-                                        v-model="meshQueryType" />
+                                        <input type="radio" class="radio__input" value="or_mesh" id="mesh-separate"
+                                            v-model="meshQueryType" />
                                         <label for="mesh-separate"><span>Separate MeSH-Terms</span></label>
                                     </div>
                                 </div>
@@ -125,6 +116,7 @@ import BaseButton from '../UI/BaseButton.vue';
 import BaseDialogNoButton from "../UI/BaseDialogNoButton.vue"
 import MeshTerm from '../UI/MeshTerm.vue'
 import exportFromJSON from "export-from-json"
+import config from '../../lib/config'
 
 export default {
     data() {
@@ -169,7 +161,7 @@ export default {
             ////
             // Gene Query
             ////
-            
+
             // get meshList and blockList from child components via $ref
             var meshList = this.$refs.meshTerms.selected;
             var blockList = this.$refs.blockList.selected;
@@ -192,7 +184,7 @@ export default {
 
                 //http://127.0.0.1:8000/articlebygenelist/?
                 //https://restapi.connect.dzd-ev.de/genesbygenelist/?
-                fetch("https://restapi.connect.dzd-ev.de/genesbygenelist/?" + this.urlParameters).then((response) => {
+                fetch(config.apiBaseUrl + "/genesbygenelist/?" + this.urlParameters).then((response) => {
                     if (response.ok) {
                         // console.log(response);
                         return response.json();
@@ -214,7 +206,7 @@ export default {
             ////
 
             if (this.queryType === "protein") {
-                fetch("https://restapi.connect.dzd-ev.de/proteinbygenelist/?").then((response) => {
+                fetch(config.apiBaseUrl + "/proteinbygenelist/?").then((response) => {
                     if (response.ok) {
                         // console.log(response);
                         return response.json();
@@ -235,7 +227,7 @@ export default {
                         this.urlParameters += "&";
                     }
                 }
-                fetch("https://restapi.connect.dzd-ev.de/articlebygenelist/?" + this.urlParameters).then((response) => {
+                fetch(config.apiBaseUrl + "/articlebygenelist/?" + this.urlParameters).then((response) => {
                     if (response.ok) {
                         return response.json();
                     }
