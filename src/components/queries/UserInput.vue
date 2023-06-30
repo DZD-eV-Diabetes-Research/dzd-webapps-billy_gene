@@ -174,17 +174,21 @@ export default {
                         this.urlParameters += "&";
                     }
                 }
-                for (let i = 0; i < meshList.length; i++) {
-                    this.urlParameters += "&m=" + meshList[i];
-                }
+                if (blockList.length === 0) {
+                    this.urlParameters += "&b=ThisIsAutofill"
+                } else
+                    for (let i = 0; i < blockList.length; i++) {
+                        this.urlParameters += "&b=" + blockList[i];
+                    }
 
-                for (let i = 0; i < blockList.length; i++) {
-                    this.urlParameters += "&b=" + blockList[i];
-                }
+                if (meshList.length === 0) {
+                    this.urlParameters += "&m=ThisIsAutofill"
+                } else
+                    for (let i = 0; i < meshList.length; i++) {
+                        this.urlParameters += "&m=" + meshList[i];
+                    }
 
-                //http://127.0.0.1:8000/articlebygenelist/?
-                //https://restapi.connect.dzd-ev.de/genesbygenelist/?
-                fetch(config.apiBaseUrl + "/genesbygenelist/?" + this.urlParameters).then((response) => {
+                fetch(config.apiBaseUrl + "articlesbygenelist/?" + this.urlParameters).then((response) => {
                     if (response.ok) {
                         // console.log(response);
                         return response.json();
@@ -206,7 +210,7 @@ export default {
             ////
 
             if (this.queryType === "protein") {
-                fetch(config.apiBaseUrl + "/proteinbygenelist/?").then((response) => {
+                fetch(config.apiBaseUrl + "proteinbygenelist/?").then((response) => {
                     if (response.ok) {
                         // console.log(response);
                         return response.json();
@@ -227,7 +231,7 @@ export default {
                         this.urlParameters += "&";
                     }
                 }
-                fetch(config.apiBaseUrl + "/articlebygenelist/?" + this.urlParameters).then((response) => {
+                fetch(config.apiBaseUrl + "articlebygenelist/?" + this.urlParameters).then((response) => {
                     if (response.ok) {
                         return response.json();
                     }
